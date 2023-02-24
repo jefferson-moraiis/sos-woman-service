@@ -11,13 +11,11 @@ export class App {
   }
 
   public router() {
-
-    // this.server.use(router)
     router(this.server)
   }
-  private config(): void{
+  private config(): void {
     this.server.use(bodyParser.json());
     this.server.use(bodyParser.urlencoded({ extended: false }));
-}
+  }
 }
 
