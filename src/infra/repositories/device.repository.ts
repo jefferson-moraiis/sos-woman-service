@@ -26,7 +26,6 @@ export class DevicesRepository implements IDevicesRepository {
   }
 
   async deleteDevice(deviceId: string): Promise<void> {
-    console.log(deviceId)
     return await Devices.findOneAndRemove({deviceId});
   }
 }

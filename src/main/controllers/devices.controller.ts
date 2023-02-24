@@ -41,7 +41,6 @@ export class DevicesController {
   }
 
   async deleteDevice(req,res){
-    console.log(req.params.deviceId);
     try {
       await this.devicesUsecases.deleteDevice(req.params.deviceId);
       res.status(200).json({message:`Device deleted successfully`});
