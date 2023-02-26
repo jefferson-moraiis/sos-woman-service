@@ -1,4 +1,4 @@
-# **Product Mkplace**
+# **Device IOT**
 
 ## **Sobre o Projeto**
 
@@ -19,7 +19,7 @@ O projeto foi desenvolvido através de desafio proposto pela empresa ProIoT para
 `Para rodar a aplicação é necessario obter a versão do node maior ou igual 16`
 
 ```
-git clone https://github.com/jefferson-moraiis/case-proIoT
+git clone git@github.com:jefferson-moraiis/case-proIoT.git
 
 cd case-proIoT
 
