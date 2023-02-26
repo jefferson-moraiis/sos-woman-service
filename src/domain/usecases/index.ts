@@ -30,7 +30,7 @@ export class DevicesUseCase {
         throw new Error(`Not possible to get devices: ${err}`);
     }
   }
-  async getDeviceById({deviceId}: IDevice) {
+  async getDeviceById(deviceId: string) {
     try {
         return await this.devicesRepository.getDeviceById(deviceId);
     } catch (err) {

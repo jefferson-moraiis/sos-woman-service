@@ -1,14 +1,13 @@
 import env from './main/config/env';
-import { App } from './main/config/app';
+import { server } from './main/config/http';
 import { MongoClient } from './infra/database/mongo';
+import './main/sockets/devices.sockets'
 
-const app = new App();
 const database = new MongoClient();
-
 
 (async function () {
   await database.connect(env.uri);
-  app.server.listen(env.port, () => {
+  server.listen(env.port, () => {
     console.log(`Server running at http://localhost:${env.port}`);
   });
 })();
