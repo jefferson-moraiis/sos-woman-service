@@ -1,7 +1,5 @@
-import http from 'http';
-import { Server } from 'socket.io'
 import { App } from './app';
-const app = new App();
+import http from 'http';
 
-export const server = http.createServer(app.server);
-export const io = new Server(server);
+const appInstance = new App();
+export const server = http.createServer(appInstance.server);

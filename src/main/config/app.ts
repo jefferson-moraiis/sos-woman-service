@@ -1,26 +1,32 @@
 import express from 'express'
 import router from './routes'
 import bodyParser from "body-parser";
-import http from 'http';
+import { connect } from './google';
 
 export class App {
-  private app
   public server
 
   constructor() {
-    this.app = express();
+    this.server = express();
     this.config()
     this.router()
-    this.server = http.createServer(this.app)
+    this.googleConfig()
   }
 
   public router() {
-    router(this.app)
+    router(this.server)
   }
 
   private config(): void {
-    this.app.use(bodyParser.json());
-    this.app.use(bodyParser.urlencoded({ extended: false }));
+    this.server.use(bodyParser.json());
+    this.server.use(bodyParser.urlencoded({ extended: false }));
+  }
+
+  async googleConfig(){
+    await connect().then(()=>{
+      console.log("firebase connection established")
+    }).catch((error)=>{
+      console.log(error)
+    })
   }
 }
-
