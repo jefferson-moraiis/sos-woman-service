@@ -23,5 +23,4 @@ export class FirebaseAuthModel {
 	async deleteAuthUser (uid: string): Promise<void> {
 		await auth().deleteUser(uid);
 	}
-
 }

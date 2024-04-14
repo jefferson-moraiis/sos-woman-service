@@ -1,5 +1,5 @@
-import { BcryptAdapter, JwtAdapter } from "@/infra/cryptography";
-import { type AuthRepository } from "@/infra/repositories";
+import { BcryptAdapter, JwtAdapter } from "../../infra/cryptography";
+import { type AuthRepository } from "../../infra/repositories";
 
 export class AuthenticationUseCase {
 	private readonly authRepository: AuthRepository;
@@ -8,8 +8,8 @@ export class AuthenticationUseCase {
 
 	constructor (authRepository: AuthRepository, crypt: BcryptAdapter, encrypter: JwtAdapter) {
 		this.authRepository = authRepository;
-		this.crypt = new BcryptAdapter(10);
-		this.encrypter = new JwtAdapter("keySecret");
+		this.crypt = crypt;
+		this.encrypter = encrypter;
 	}
 
 	async authenticateUser (email: string, password: string) {

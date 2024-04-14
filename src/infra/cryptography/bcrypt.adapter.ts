@@ -8,6 +8,8 @@ export class BcryptAdapter {
   }
 
   async compare (plaintext: string, digest: string): Promise<boolean> {
+    console.log("🚀 ~ BcryptAdapter ~ compare ~ digest:", digest)
+    console.log("🚀 ~ BcryptAdapter ~ compare ~ plaintext:", plaintext)
     return bcrypt.compare(plaintext, digest)
   }
 }

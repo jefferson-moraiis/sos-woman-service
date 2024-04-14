@@ -1,12 +1,12 @@
 import { type FirebaseUserDTO } from "../../domain/dto";
-import { type IAuthRepository } from "../../domain/interfaces";
-import { type FirebaseAuthModel } from "@/infra/database";
+import { type IAuthRepository } from "../../domain/interfaces/auth.interface";
+import { FirebaseAuthModel } from "../database";
 
 export class AuthRepository implements IAuthRepository {
 	private readonly authService: FirebaseAuthModel;
 
-	constructor (authService: FirebaseAuthModel) {
-		this.authService = authService;
+	constructor () {
+		this.authService = new FirebaseAuthModel();
 	}
 
 	async createUser (userData: FirebaseUserDTO): Promise<FirebaseUserDTO> {
@@ -31,4 +31,5 @@ export class AuthRepository implements IAuthRepository {
 	async deleteAuthUser (uid: string): Promise<void> {
 		await this.authService.deleteAuthUser(uid);
 	}
+
 }

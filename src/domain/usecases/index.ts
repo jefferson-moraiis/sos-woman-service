@@ -1,2 +1,2 @@
 export * from "./user.usecases";
-export * from "./authentication.usecase";
+export * from "./auth.usecase";
