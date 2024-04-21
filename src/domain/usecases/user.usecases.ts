@@ -10,7 +10,6 @@ export class UserUseCase {
 	}
 
 	async createUser (userData: Partial<UserDTO>) {
-		console.log("🚀 ~ UserUseCase ~ createUser ~ userData:", userData)
 		const userRecord = await auth().createUser({
 			email: userData.email,
 			password: userData.password,
@@ -23,7 +22,7 @@ export class UserUseCase {
 			email: userData.email,
 			phone: userData.phone,
 			lastName: userData.lastName,
-			age: userData.age,
+			dateOfBirth: userData.dateOfBirth,
 			role: userData.role
 		}).catch(async (error: Error | any) => {
 			await auth().deleteUser(userRecord.uid);
@@ -39,6 +38,10 @@ export class UserUseCase {
 	async getAllUsers () {
 		return await this.userRepository.findAllUsers();
 	}
+
+  async findByField(fieldName: string, value: any): Promise<UserDTO | null> {
+     return await this.userRepository.findByField(fieldName, value)
+  }
 
 	async updateUser (id: string, userData: Partial<UserDTO>) {
 		return await this.userRepository.updateUser(id, userData);

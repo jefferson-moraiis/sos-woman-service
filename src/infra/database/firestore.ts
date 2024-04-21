@@ -33,6 +33,15 @@ export class FirestoreModel<T> {
 		}
 	}
 
+  async findByField(fieldName: string, value: any): Promise<T | null> {
+    const querySnapshot = await this.collection.where(fieldName, '==', value).limit(1).get();
+    if (querySnapshot.empty) {
+        return null;
+    } else {
+        return querySnapshot.docs[0].data() as T;
+    }
+}
+
 	async update (docId: string, data: Partial<T>): Promise<void> {
 		await this.collection.doc(docId).update(data);
 	}

@@ -1,8 +1,7 @@
 import { NextFunction, Request, Response } from 'express'
-import { JwtAdapter } from '../../infra/cryptography'
 import { UserRepository } from '../../infra/repositories';
+import * as admin from 'firebase-admin';
 
-const encrypted = new JwtAdapter('keySecret')
 const customerRepository = new UserRepository()
 
 declare global {
@@ -18,15 +17,17 @@ export const authMiddleware = async (
 	res: Response,
 	next: NextFunction
 ) => {
-	try {
-		const { authorization } = req.headers
-		const token = authorization?.split(' ')[1]
-		const customer = await encrypted.decrypt(token)
-		await customerRepository.findUserById(customer.id)
+  const token = req.headers.authorization?.split('Bearer ')[1];
 
-		req.user = customer
-		next()
-	} catch (error) {
-		res.status(401).json({message:'Not Authorized'});
-	}
+  if (token) {
+    try {
+      const { authorization } = req.headers
+      const token = authorization?.split(' ')[1]
+      const customer = await admin.auth().verifyIdToken(token);
+      req.user = await customerRepository.findUserById(customer.uid)
+    } catch (error) {
+      res.status(401).json({message:'Not Authorized'});
+    }
+  }
+  next()
 }

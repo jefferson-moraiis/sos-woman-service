@@ -1,6 +1,6 @@
 import env from './main/config/env';
 import { server } from './main/config/http';
-import './main/sockets/devices.sockets'
+// import './main/sockets/devices.sockets'
 
 (async function () {
   server.listen(env.port, () => {

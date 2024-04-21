@@ -5,9 +5,8 @@ export class UserDTO {
 	readonly lastName: string;
 	readonly email: string;
 	readonly phone: string;
-	readonly age: number;
+	readonly dateOfBirth: Date;
 	readonly role: UserRole;
-	readonly username: string;
 	readonly password: string;
 
 	constructor (
@@ -17,9 +16,8 @@ export class UserDTO {
 		lastName: string,
 		email: string,
 		phone: string,
-		age: number,
+		dateOfBirth: Date,
 		role: UserRole,
-		username: string,
 		password: string
 	) {
 		this.id = id;
@@ -28,9 +26,8 @@ export class UserDTO {
 		this.lastName = lastName;
 		this.email = email;
 		this.phone = phone;
-		this.age = age;
+		this.dateOfBirth = dateOfBirth;
 		this.role = role;
-		this.username = username;
 		this.password = password;
 	}
 }
