@@ -1,25 +1,29 @@
 import express from 'express'
 import router from './routes'
 import bodyParser from "body-parser";
+import http from 'http';
 import { connect } from './google';
 
+
 export class App {
+  public app
   public server
 
   constructor() {
-    this.server = express();
+    this.app = express();
     this.config()
     this.router()
     this.googleConfig()
+    this.server = http.createServer(this.app)
   }
 
   public router() {
-    router(this.server)
+    router(this.app)
   }
 
   private config(): void {
-    this.server.use(bodyParser.json());
-    this.server.use(bodyParser.urlencoded({ extended: false }));
+    this.app.use(bodyParser.json());
+    this.app.use(bodyParser.urlencoded({ extended: false }));
   }
 
   async googleConfig(){
@@ -30,3 +34,4 @@ export class App {
     })
   }
 }
+

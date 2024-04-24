@@ -13,9 +13,9 @@ declare global {
 }
 
 export const authMiddleware = async (
-	req: Request,
-	res: Response,
-	next: NextFunction
+	req,
+	res,
+	next
 ) => {
   const token = req.headers.authorization?.split('Bearer ')[1];
 

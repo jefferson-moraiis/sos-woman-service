@@ -1,16 +1,8 @@
-// import { server } from '../config/http';
-// import { Server as SocketIOServer } from 'socket.io';
+import { io } from '../config/http';
 
-// export const io = new SocketIOServer(server);
-
-//   io.on('connection', (socket) => {
-//     socket.on('sendRoutes', async(device) => {
-//       const { name } = await devicesService.addDevice(device);
-//       socket.emit('deviceCreated', {message:`Device ${name} added successfully`});
-//     })
-//     socket.on('updateDevice', async (device) => {
-//       const result = await devicesService.updateDevice(device);
-//       socket.emit('deviceUpdated', result);
-//     })
-//   })
+io.on('connection', (socket) => {
+  socket.on('sendLocation', async(location) => {
+    socket.emit('sendLocation', location);
+  })
+})
 
