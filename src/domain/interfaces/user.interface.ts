@@ -7,5 +7,5 @@ export interface IUserRepository {
   deleteUser: (id: string) => Promise<void>
   findUserById: (id: string) => Promise<UserDTO | null>
   findAllUsers: () => Promise<UserDTO[] | null>
-  findByField: (fieldName: string, value: any) => Promise<UserDTO | null>
+  findByField: (fieldName: string, value: any) => Promise<UserDTO[] | null>
 }

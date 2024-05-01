@@ -7,6 +7,6 @@ export async function connect(){
         credential: admin.credential.cert(path.resolve(
           __dirname,'../../credentials.json'
         )),
-        databaseURL: 'https://sos-woman-dev.firebaseapp.com'
+        databaseURL: 'https://sos-woman-dev-default-rtdb.firebaseio.com/' //'https://sos-woman-dev.firebaseapp.com'
       })
 }

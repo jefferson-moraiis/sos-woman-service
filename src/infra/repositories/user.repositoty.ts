@@ -1,12 +1,17 @@
 import { type UserDTO } from "../../domain/dto";
 import { type IUserRepository } from "../../domain/interfaces/user.interface";
 import { FirestoreModel } from "../../infra/database";
+import { RealtimeDatabaseModel } from "../database/realtime";
 
 export class UserRepository implements IUserRepository {
-  private readonly userModel: FirestoreModel<UserDTO>;
+  private readonly userModel: RealtimeDatabaseModel<UserDTO>;
+  // private readonly userModel: FirestoreModel<UserDTO>;
+
 
   constructor() {
-    this.userModel = new FirestoreModel<UserDTO>("USERS");
+    this.userModel = new RealtimeDatabaseModel<UserDTO>("USERS");
+    // this.userModel = new FirestoreModel<UserDTO>("USERS");
+
   }
 
   async createUser(userData: Partial<UserDTO>): Promise<any> {
@@ -29,7 +34,7 @@ export class UserRepository implements IUserRepository {
     return await this.userModel.findById(id);
   }
 
-  async findByField(fieldName: string, value: any): Promise<UserDTO | null> {
+  async findByField(fieldName: string, value: any): Promise<UserDTO[] | null> {
     return await this.userModel.findByField(fieldName, value);
   }
 

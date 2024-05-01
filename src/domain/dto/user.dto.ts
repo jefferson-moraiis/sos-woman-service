@@ -8,6 +8,7 @@ export class UserDTO {
 	readonly dateOfBirth: Date;
 	readonly role: UserRole;
 	readonly password: string;
+  readonly location: any;
 
 	constructor (
 		id: string,
@@ -18,7 +19,8 @@ export class UserDTO {
 		phone: string,
 		dateOfBirth: Date,
 		role: UserRole,
-		password: string
+		password: string,
+    location?: any
 	) {
 		this.id = id;
     this.documentId = documentId
@@ -27,8 +29,9 @@ export class UserDTO {
 		this.email = email;
 		this.phone = phone;
 		this.dateOfBirth = dateOfBirth;
-		this.role = role;
+		this.role = role ? role : UserRole.USER;
 		this.password = password;
+    this.location = location ? location : null;
 	}
 }
 enum UserRole {
