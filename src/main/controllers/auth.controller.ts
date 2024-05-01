@@ -10,7 +10,6 @@ export class AuthController {
       const authUser = await this.authUseCase.authenticateUser(email, password);
       res.status(200).json(authUser);
     } catch (error: any) {
-      console.log("🚀 ~ AuthController ~ login ~ error:", error)
       res.status(400).json({ error: error.message });
     }
   }
