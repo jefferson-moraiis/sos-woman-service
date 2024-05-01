@@ -21,8 +21,8 @@ export const authMiddleware = async (
 
   if (token) {
     try {
-      // const { authorization } = req.headers
-      // const token = authorization?.split(' ')[1]
+      const { authorization } = req.headers
+      const token = authorization?.split(' ')[1]
       const customer = await admin.auth().verifyIdToken(token);
       console.log("🚀 ~ customer:", customer)
       req.user = await customerRepository.findUserById(customer.uid)

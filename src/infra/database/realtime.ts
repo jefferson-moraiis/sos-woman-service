@@ -9,11 +9,7 @@ export class RealtimeDatabaseModel<T> {
     }
 
     async create(data: Partial<UserDTO>): Promise<void> {
-      const id = data.id;
-      // Clonamos o objeto para evitar modificar o original ao excluir 'id'
-      const dataToSave = { ...data };
-      delete dataToSave.id;  // Removemos 'id' para não salvar no mesmo nível dos outros dados
-      await this.ref.child(id).set(dataToSave);
+      await this.ref.child(data.id).set(data);
   }
 
     async findAll (): Promise<T[]> {
