@@ -31,9 +31,9 @@ export class RealtimeDatabaseModel<T> {
         return data ? data as T : null;
     }
 
-    async findByField(fieldName: string, value: any): Promise<T[] | null > {
+    async findByField(fieldName: string, value: any): Promise<T | null > {
         const allData = await this.findAll();
-        return allData.filter(item => item[fieldName] === value);
+        return allData.find(item => item[fieldName] === value);
     }
 
     async update (docId: string, data: Partial<T>): Promise<void> {

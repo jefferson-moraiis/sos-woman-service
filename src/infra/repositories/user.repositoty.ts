@@ -34,7 +34,7 @@ export class UserRepository implements IUserRepository {
     return await this.userModel.findById(id);
   }
 
-  async findByField(fieldName: string, value: any): Promise<UserDTO[] | null> {
+  async findByField(fieldName: string, value: any): Promise<UserDTO | null> {
     return await this.userModel.findByField(fieldName, value);
   }
 

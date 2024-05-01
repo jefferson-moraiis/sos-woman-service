@@ -39,7 +39,7 @@ export class UserUseCase {
 		return await this.userRepository.findAllUsers();
 	}
 
-  async findByField(fieldName: string, value: any): Promise<UserDTO[] | null> {
+  async findByField(fieldName: string, value: any): Promise<UserDTO | null> {
      return await this.userRepository.findByField(fieldName, value)
   }
 
