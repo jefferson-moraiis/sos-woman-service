@@ -18,7 +18,7 @@ io.on('connection', (socket) => {
     const userFind = await getUserByToken(event.headers?.Authorization?.split('Bearer ')[1]);
     const userUpdated = await customerRepository.updateUser(userFind.id,{location: event.location})
     console.log("🚀 ~ socket.on ~ userUpdated:", userUpdated)
-    socket.emit('getLocation', userUpdated);
+    io.emit('getLocation', userUpdated);
   })
 
   socket.on('getLocation', async(event) => {
