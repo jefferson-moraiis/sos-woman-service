@@ -3,6 +3,7 @@ import router from './routes'
 import bodyParser from "body-parser";
 import http from 'http';
 import { connect } from './google';
+import cors from 'cors';
 
 
 export class App {
@@ -22,6 +23,7 @@ export class App {
   }
 
   private config(): void {
+    this.app.use(cors());
     this.app.use(bodyParser.json());
     this.app.use(bodyParser.urlencoded({ extended: false }));
   }
