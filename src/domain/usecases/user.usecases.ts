@@ -11,7 +11,7 @@ export class UserUseCase {
 
 	async createUser (userData: Partial<UserDTO>) {
 		const userRecord = await auth().createUser({
-			email: userData.email,
+			email: userData.email.toLowerCase().trim(),
 			password: userData.password,
 			displayName: userData.name
 		});
@@ -19,7 +19,7 @@ export class UserUseCase {
 			id: userRecord.uid,
       documentId: userData.documentId,
 			name: userData.name,
-			email: userData.email,
+			email: userData.email.toLowerCase().trim(),
 			phone: userData.phone,
 			lastName: userData.lastName,
 			dateOfBirth: userData.dateOfBirth,
