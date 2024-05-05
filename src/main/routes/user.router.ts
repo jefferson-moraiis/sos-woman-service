@@ -9,7 +9,7 @@ export default (router: Router): void => {
   router.get("/user",authMiddleware,(req,res)=> userFactory().getUser(req,res))
   router.get("/user/:id",authMiddleware,(req,res)=> userFactory().getUserById(req,res))
   router.get("/user/:cpf",(req,res)=> userFactory().getUserByDocumentId(req,res))
-  router.get("/user",authMiddleware,(req,res)=> userFactory().getAllUsers(req,res))
+  router.get("/users",authMiddleware,(req,res)=> userFactory().getAllUsers(req,res))
   router.put("/user/:id",authMiddleware,(req,res)=> userFactory().updateUser(req,res))
   router.delete("/user/:id",authMiddleware,(req,res)=> userFactory().deleteUser(req,res))
 }
