@@ -31,9 +31,18 @@ export class UserController {
 		}
 	}
 
-	async getUserById (req: Request, res: Response) {
+	async getUser (req: Request, res: Response) {
 		try {
 			const user = await this.user.getUserById(req['user'].id);
+			if (!user) return res.status(404).json({ error: "User not found" });
+			res.status(200).json(user);
+		} catch (error: any) {
+			res.status(400).json({ error: error.message });
+		}
+	}
+  async getUserById (req: Request, res: Response) {
+		try {
+			const user = await this.user.getUserById(req.params.id);
 			if (!user) return res.status(404).json({ error: "User not found" });
 			res.status(200).json(user);
 		} catch (error: any) {
